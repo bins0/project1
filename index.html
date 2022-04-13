@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+      
+    <link rel="shortcut icon" href="./img/kitchen.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <title>Document</title>
+    <style>
+        .up {
+            transform: translate(0,0); 
+            transition: transform 0.5s;
+        }
+        .up:hover {
+            transform: translate(0,-10px); 
+        }
+
+        .v-card--reveal {
+                align-items: center;
+                bottom: 0;
+                justify-content: center;
+                opacity: .7;
+                position: absolute;
+                width: 100%;
+                
+          }
+          body{
+          width: 100%;
+          height: 100%;
+          }
+
+       
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <!-- 앱바 -->
+          <appbar-component></appbar-component>
+        
+               <!-- 슬라이더-->
+           <slider-component></slider-component>
+        <!-- menu-->
+         <menu-component></menu-component>
+      
+        
+
+            <!-- event -->
+          <v-row>
+            <v-col cols="12" ms="12" xs="12" >
+              <v-main  style="padding-top:90px;" >
+           
+              <v-img src="./img/sheet3s.jpg" style =" position: relative;
+            width: 100%;
+              margin: 0px auto;">
+                  <h3 style="
+                      color: #fff;
+                      font-size: 55px;
+                      letter-spacing: 2.16px; text-align: center; margin-top: 250px; 
+
+                  ">할인혜택</h3>
+                  <P style="color:white; text-align: center; margin-bottom: 100px; font-size: 0.857rem;">다양한 멤버십과 제휴할인 혜택을 누리세요</P>
+                  <ul style="list-style-type: none; cursor: pointer; margin-top: 68px;
+                      padding: 0 45px;
+                      overflow: hidden;">
+                    <li  v-for="(event,i) in discount" :key="i" style="float: left;
+                      width: 33.33%; text-align: center;">
+                        <a href="#" style="text-decoration: none; color: #646464;">
+                           <v-icon color="white" style="font-size: 120px; max-width: 100%;">{{event.dicon}}</v-icon>
+                              <span style="margin-top: 30px;
+                              color: #fff;
+                              font-size: 30px; display: block;">{{event.dname}}</span>
+                              <span style="display: block;
+                              margin-top: 14px;
+                              color: #fff;
+                              font-size: 17px;
+                              line-height: 22px;
+                              opacity: 0.7;
+                              ">{{event.dsub}}
+                                  <br>
+                                  {{event.dsub2}}
+                          </span>
+                          </a>
+                        </li >
+                      </ul>
+                  </v-img>
+              </v-main>
+                </v-col>
+              </v-row>
+          </v-sheet>
+
+
+                  
+                <!-- footer -->
+                <v-main class="d-flex justify-center pt-0" >
+                  <v-sheet color="white #222 pr-0" >
+                    <v-row >
+                      <v-col  class="pa-0" cols="12" sm="12" xs="12">
+                        <v-footer 
+                        dark
+                        padless
+                      >
+                  <v-card
+                    flat
+                    tile
+                    class="gray white--text text-center"
+                  >
+                    
+    
+                    <v-card-text class="white--text pt-0 " style="margin-right:5000px; margin-bottom: 100px;"  >
+        
+                        <ul  style="margin-top: 30px;   list-style: none; display:flex; justify-content: center ; color:white;">
+                           <li v-for="foot in footer">| {{foot.name}}&nbsp;&nbsp;  </li> <br>
+    
+                        </ul>
+    
+                        <v-card-text name="company" class="ml-6" style="color:white;">(주)힘내코리아 서울특별시 중구 동호로 00길 00 나라빌딩 S동 / 우편번호: 00000</v-card-text>
+                       <br>
+                        <v-card-text name="telephon" class="ml-6 text-h5" style="color:white;">대표문의 : 02-0000-8800</v-card-text>
+                        
+                   
+                                    <v-btn
+                          v-for="icon in icons"
+                          :key="icon"
+                          class="mx-4 white--text"
+                          icon
+                          style="justify-content: center;" 
+                        >
+                          <v-icon size="24px">
+                            {{ icon }}
+                          </v-icon>
+                        </v-btn>
+                      </v-card-text>
+                      <v-card-text>
+                      
+                      </v-card-text>
+    
+                      <v-divider></v-divider>
+    
+                      <v-card-text style="margin-bottom:100px" class="white--text">
+                        {{ new Date().getFullYear() }} — <strong>kitchen-Cook</strong>
+                      </v-card-text>
+                    </v-card>
+                  </v-footer>
+                <v-bottom-navigation color="#BDBDBD" fixed height="90px" style="
+                flex-wrap: wrap;display: flex; padding-top: 14px; padding-left: 10px; " >
+                   
+    
+
+                   
+                   <v-row temporary class="mx-md-15  d-flex aline-center justify-space-around">
+                    <v-col 
+                           
+                    cols="4"
+                    sm="2">
+
+                    <v-select
+                    :items="items"
+                    label="지점"
+                    outlined
+                    ></v-select>
+                </v-col>
+
+                 <v-col 
+                 
+                 cols="4"
+                 sm="3"
+                 xs="3"
+                      outlined>
+                    <v-text-field class="d-flex justify-center"
+                    label="Time"
+                    type="time"
+                    color="white--text"
+                      placeholder
+                      outlined 
+                    ></v-text-field>
+                </v-col>
+                <v-col 
+                 
+               cols="4"
+                 sm="3"
+                 xs="3"
+                     outlined>
+                <v-text-field
+                
+                type="Date"
+            
+              
+                outlined
+                >
+                    
+                </v-text-field>
+                </v-col>
+                
+                
+            <v-col
+                  
+                    cols="4"
+                    sm="2"
+                >
+                    <v-select color="black--text"
+                    :items="itemss"
+                    label="인원"
+                    outlined
+                    ></v-select>
+                </v-col>
+
+              
+                  <v-dialog
+                    v-model="dialog"
+                    persistent
+                    max-width="600px" v-for="value in [ '']"
+                    :key="value"
+                  >
+                    <template v-slot:activator="{ on, attrs } ">
+                      <v-btn 
+                      outlined height="60px" width="200px"
+                        :class="`rounded${value}`"
+                    
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        style="color: black;"
+                      class=" pa-4 mt-2 pa-3 text-center text-center text-no-wrap text-h6"
+                              >
+                              예약하기
+                        </v-btn>
+                                    
+                      
+                      </template>
+                    
+                      <v-card>
+                        <v-card-title>
+                          <span class="text-h5">User Profile</span>
+                        </v-card-title>
+                        <v-card-text>
+                          <v-container>
+                            <v-row>
+                              <v-col
+                            cols="12"
+                            sm="6"
+                            md="6"
+                          >
+                    <v-text-field
+                      label="성*"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="6"
+                  >
+                    <v-text-field
+                      label="이름*"
+                  
+                      persistent-hint
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      label="이메일*"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      label="비밀번호*"
+                      type="password"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                  >
+                    <v-select
+                      :items="['0-17', '18-29', '30-54', '54+']"
+                      label="나이*"
+                      required
+                    ></v-select>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                  >
+                    <v-autocomplete
+                      :items="['DINNER','LUNCH SET','WINE LIST' ,'T-BONE Steak','DESSERTS','PASTA & SALADS']"
+                      label="메뉴"
+                      multiple
+                    ></v-autocomplete>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      label="카드번호* MM/YY/CVC"
+                      type="card"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <small>*필수 필드를 나타냅니다</small>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="dialog = false"
+              >
+              닫기
+              </v-btn>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="dialog = false"
+              >
+                저장
+                  </v-btn>
+                    </v-card-actions>
+                    </v-card>
+                    </v-dialog>
+                  </v-bottom-navigation>
+                </v-row>
+             </v-sheet>  
+           </v-main>  
+        </v-app>
+    </div>
+    <script src="./appbarComponent.js"></script>
+    <script src="./sliderComponent.js"></script>
+    <script src="./menuComponent.js"></script>
+ 
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify : new Vuetify (),
+            data() {
+             return{
+
+              discount : [ 
+                    {dicon : "mdi-ticket-percent", dname :"MEMBERSHIP",dsub:"회원가입하고",dsub2:"멤버십 혜택 풍성하게 보내세요"},
+                    {dicon : "mdi-credit-card-outline", dname :"DISCOUNT",dsub:"행복카드 매주 토요일",dsub2:"50% M포인트 사용으로 할인받으세요"},
+                    {dicon : "mdi-gift", dname :"GIFT",dsub:"대전신세계점단독 풀코스 다이닝",dsub2:"프리미엄 스테이크 코스를 즐기러 방문하세요"},
+                ],
+                
+                
+                footer : [//푸터
+                    {name: "회사소개"} ,
+                    {name :"이용약관"},
+                    {name:"개인정보처리방침"},
+                    {name:"이메일무단수집거부"},
+                    {name:"위치기반서비스이용약관"},
+                    {name:"상담센터"}
+                ],
+                footicon : [
+                    {icons:"mdi-instagram"},
+                    {icons:"mdi-facebook"},
+                    {icons:"mdi-twitter"},
+                ],
+                items: ['강남점','동탄점', '대전신세계점','광주점','대구점','서면점', '광안리점'],
+                icons: ['mdi-facebook','mdi-twitter','mdi-instagram',
+      ],
+      itemss: ['1', '2', '3', '4','5','6','7','8','9','10','11','12'],
+       dialog: false,
+        }
+    },
+    })
+    </script>
+</body>
+</html>
